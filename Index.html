@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>College Chatbot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eef2f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .chatbox {
+            background: white;
+            width: 420px;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 15px;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            background: #4a6cf7;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #3b5be3;
+        }
+        .reply {
+            margin-top: 15px;
+            background: #f1f1f1;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="chatbox">
+    <h2>🤖 College Chatbot</h2>
+
+    <input type="text" id="userInput" placeholder="Ask about admissions, courses, hostel..." />
+    <button onclick="getReply()">Send</button>
+
+    <div id="replyBox" class="reply" style="display:none;"></div>
+</div>
+
+<script>
+    const collegeData = {
+        "admission": "Admissions are based on Counseling.",
+        "courses": "We offer CSE, ECE, EEE, Mechanical, Civil and Robotics.",
+        "timings": "College timing is 9 AM to 5 PM, Monday to Friday.",
+        "hostel": "Hostel available for boys and girls with mess.",
+        "contact": "Email: info@tpgit.edu.in, Phone: 0416-2267762",
+        "fees": "Fees depend on the course and semester. Contact office for details.",
+        "exam": "Semester exams follow Anna University schedule.",
+        "results": "Results are published on the Anna University website.",
+        "library": "Library open from 9 AM to 5 PM. Borrow up to 5 books.",
+        "bus": "Bus facilities are not available.",
+        "sports": "Facilities for cricket, football, basketball and indoor games.",
+        "clubs": "Coding, robotics, arts and music clubs are available.",
+        "scholarship": "Community and Pragati scholarships are available.",
+        "principal": "Principal: Letitia",
+        "events": "Annual cultural and technical events are held in December.",
+        "placement": "Good placement records. Top companies visit every year.",
+        "address": "Thanthai Periyar Government Institute of Technology, Bagayam, Vellore."
+    };
+
+    function getReply() {
+        const input = document.getElementById("userInput").value.toLowerCase();
+        const replyBox = document.getElementById("replyBox");
+        let response = "";
+
+        for (let key in collegeData) {
+            if (input.includes(key)) {
+                response = collegeData[key];
+                break;
+            }
+        }
+
+        if (response === "") {
+            response = "Sorry 😅 I didn’t get that. Try asking about courses, fees, hostel, placements.";
+        }
+
+        replyBox.style.display = "block";
+        replyBox.innerHTML = "<strong>Bot:</strong> " + response;
+    }
+</script>
+
+</body>
+</html>
